@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="todo">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Alurapic</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+	<script src="js/lib/angular.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/controllers/lista-controller.js"></script>
+</head>
+
+<body ng-controller="listaController">
+	<div class="container">
+		<div class="jumbotron">
+			<h1 class="text-center">To Do List</h1>
+		</div>
+		<div class="panel panel-default col-md-20">
+			<h2>Nova lista </h2>
+			<form class="form-inline">
+				<div class="form-group">
+					<label for="exampleInputName2">Nome da lista</label>
+					<input type="text" class="form-control" ng-model="listaEnvia.nomeLista" placeholder="Nome">
+				</div>
+				</br>
+				<button type="submit" ng-click="addLista(listaEnvia)" class="btn btn-default">salvar</button>
+			</form>
+		</div>
+		<div class="panel panel-default col-md-20" ng-repeat="lista in lista">
+			<div class="panel-heading">
+				<h2>{{lista.nomeLista}}<h2>
+				<button type="button" class="btn btn-danger" ng-click="removeLista(lista._id)">remover</button>	
+
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>
+									<h3>nome</h3>
+								</th>
+								<th>
+									<h3>descrição</h3>
+								</th>
+								<th>
+									<h3>status</h3>
+								</th>
+								<th>
+									<h3>data</h3>
+								</th>
+								<th>
+									<h3>conclir</h3>
+								</th>
+								<th>
+									<h3>deletar</h3>
+								</th>
+							</tr>
+							<form>
+								<tbody ng-repeat="item in item |filter:lista._id">
+									<td>{{item.nomeItem}}</td>
+									<td>{{item.descricao}}</td>
+									<td>{{item.status}}</td>
+									<td>{{item.data}}</td>
+									<td><button type="submit" class="btn btn-success" ng-click="conclulir(item)">conclir</button></td>
+									<td><button type="submit" class="btn btn-danger" ng-click="rmitem(item)">deletar</button></td>
+								</tbody>
+							</form>
+						</thead>
+					</table>
+					<form>
+						<div class="input-group input-group">
+							<span class="input-group-addon" id="sizing-addon2">Nome Tarefa</span>
+							<input  ng-model="tarefa.nomeItem" type="text" class="form-control" placeholder="Titulo" aria-describedby="sizing-addon2">
+						</div>
+						<br/>
+						<div class="input-group">
+							<span class="input-group-addon" id="sizing-addon2">Descrição da tarefa</span>
+							<input ng-model="tarefa.descricao" type="text" class="form-control" placeholder="descrição" aria-describedby="sizing-addon2">
+							<in>
+						</div>
+						</br>
+						
+						<button type="button" class="btn btn-primary" ng-click="enviaTarefa(tarefa,lista._id)">enviar</button>
+						
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+
+</html>
